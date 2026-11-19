@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y libpq-dev curl \
 
 # Vytvoření složky aplikace a zkopírování zdrojového kódu
 WORKDIR /opt/backend
-COPY src/backend/ /opt/backend
+COPY src/backend.php /opt/backend/
 
 # Spuštění vestavěného PHP HTTP serveru na portu 5000
 CMD ["php", "-S", "0.0.0.0:5000", "/opt/backend/backend.php"]

@@ -1,0 +1,12 @@
+FROM php:8.2-cli
+
+# Instalace PostgreSQL vývojových knihoven a PDO ovladače
+RUN apt-get update && apt-get install -y libpq-dev curl \
+    && docker-php-ext-install pdo pdo_pgsql
+
+# Vytvoření složky aplikace a zkopírování zdrojového kódu
+WORKDIR /opt/backend
+COPY src/backend/ /opt/backend
+
+# Spuštění vestavěného PHP HTTP serveru na portu 5000
+CMD ["php", "-S", "0.0.0.0:5000", "/opt/backend/backend.php"]
